@@ -1,8 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
-
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
+import { Link } from 'react-router-dom';
 
 const Alert = ({ title, iconUrl }) => {
   return (
@@ -13,14 +11,14 @@ const Alert = ({ title, iconUrl }) => {
             <div className="flex flex-col gap-3.5">
               {iconUrl && (
                 <div className="flex-center">
-                  <Image src={iconUrl} width={72} height={72} alt="icon" />
+                  <img src={iconUrl} className="h-[72px] w-[72px]" alt="icon" />
                 </div>
               )}
               <p className="text-center text-xl font-semibold">{title}</p>
             </div>
 
             <Button asChild className="bg-blue-1">
-              <Link href="/">Back to Home</Link>
+              <Link to={"/"}>Back to Home</Link>
             </Button>
           </div>
         </CardContent>

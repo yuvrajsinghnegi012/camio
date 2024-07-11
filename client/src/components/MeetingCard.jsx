@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "./ui/button";
 import { avatarImages } from "../constants/constants";
 import { useToast } from "./ui/use-toast";
@@ -20,8 +18,6 @@ const MeetingCard = ({
     <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-dark-1 px-5 py-8 xl:max-w-[568px]">
       <article className="flex flex-col gap-5">
         <image src={icon} className="w-[28px] h-[28px]" alt="upcoming" 
-        // width={28} 
-        // height={28} 
         />
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
@@ -36,11 +32,8 @@ const MeetingCard = ({
             <img
               key={index}
               src={img}
-              className="w-[40px] h-[40px] rounded-full"
+              className={`w-[40px] h-[40px] rounded-full ${index > 0 ? "absolute" : ""}`}
               alt="attendees"
-              // width={40}
-              // height={40}
-              // className={`rounded-full  ${absolute: index > 0} `}
               style={{ top: 0, left: index * 28 }}
             />
           ))}
@@ -52,7 +45,7 @@ const MeetingCard = ({
           <div className="flex gap-2">
             <Button onClick={handleClick} className="rounded bg-blue-1 px-6">
               {buttonIcon1 && (
-                <img src={buttonIcon1} alt="feature" width={20} height={20} />
+                <img src={buttonIcon1} alt="feature" className="w-[20px] h-[20px]" />
               )}
               &nbsp; {buttonText}
             </Button>
@@ -67,9 +60,8 @@ const MeetingCard = ({
             >
               <img
                 src="/icons/copy.svg"
+                className="w-[20px] h-[20px]"
                 alt="feature"
-                width={20}
-                height={20}
               />
               &nbsp; Copy Link
             </Button>

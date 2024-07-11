@@ -1,5 +1,3 @@
-'use client';
-
 const HomeCard = ({ className, img, title, description, handleClick }) => {
   return (
     <section

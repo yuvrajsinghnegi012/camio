@@ -1,4 +1,3 @@
-"use client";
 import { Dialog, DialogContent } from "./ui/dialog";
 import { Button } from "./ui/button";
 
@@ -21,7 +20,7 @@ const MeetingModal = ({
         <div className="flex flex-col gap-6">
           {image && (
             <div className="flex justify-center">
-              <img src={image} alt="checked" width={72} height={72} />
+              <img src={image} alt="checked" className="w-[72px] h-[72px]" />
             </div>
           )}
           <h1 className={`text-3xl font-bold leading-[42px] ${className}`}>
@@ -38,8 +37,7 @@ const MeetingModal = ({
               <img
                 src={buttonIcon}
                 alt="button icon"
-                width={13}
-                height={13}
+                className="w-[13px] h-[13px]"
               />
             )}{" "}
             &nbsp;
