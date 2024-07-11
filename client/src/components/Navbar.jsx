@@ -1,6 +1,7 @@
 // import { SignedIn, UserButton } from '@clerk/nextjs';
 import MobileNav from './MobileNav';
 import { Link } from 'react-router-dom';
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const Navbar = () => {
   return (
@@ -9,8 +10,6 @@ const Navbar = () => {
         <img
           src="/icons/logo.svg"
           className="max-sm:size-10 h-[32px] w-[32px]"
-          // width={32}
-          // height={32}
           alt="camio logo"
         />
         <p className="text-[25px] font-semibold text-white max-sm:hidden">
@@ -18,10 +17,17 @@ const Navbar = () => {
         </p>
       </Link>
       <div className="flex-between gap-5">
-        {/* <SignedIn> */}
-          {/* <UserButton afterSignOutUrl="/sign-in" /> */}
-        {/* </SignedIn> */}
-
+        {/* <SignedIn>
+          <UserButton afterSignOutUrl="/sign-in" />
+        </SignedIn> */}
+        <SignedOut>
+          <SignInButton>
+            <button className='text-white text-[1.1rem] font-semibold w-[8rem]'>Sign In</button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton/>
+        </SignedIn>
         <MobileNav />
       </div>
     </nav>
