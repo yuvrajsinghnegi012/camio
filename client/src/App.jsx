@@ -14,7 +14,7 @@ import StreamVideoProvider from "./providers/StreamClientProvider";
 export default function App() {
   return (
     <div className="">
-      {/* <StreamVideoProvider> */}
+      <StreamVideoProvider>
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path={"/"} element={<Home />} />
@@ -27,7 +27,7 @@ export default function App() {
             <Route path={"/sign-un"} element={<SignUpPage />} />
           </Routes>
         </Suspense>
-      {/* </StreamVideoProvider> */}
+      </StreamVideoProvider>
     </div>
   )
 }
