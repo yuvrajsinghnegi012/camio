@@ -1,8 +1,8 @@
-// import { useUser } from "@clerk/nextjs";
-// import { useStreamVideoClient } from "@stream-io/video-react-sdk";
+import { useUser } from "@clerk/clerk-react";
+import { useStreamVideoClient } from "@stream-io/video-react-sdk";
 // import { useRouter } from "next/navigation";
-
-// import { useGetCallById } from "../hooks/useGetCallById";
+import { useNavigate } from "react-router-dom";
+import { useGetCallById } from "../hooks/useGetCallById";
 import { Button } from "../components/ui/button";
 import { useToast } from "../components/ui/use-toast";
 import RootLayout from '../hoc/RootLayout';
@@ -25,13 +25,14 @@ const Table = ({
 
 const PersonalRoom = () => {
   // const router = useRouter();
-  // const { user } = useUser();
-  // const client = useStreamVideoClient();
-  // const { toast } = useToast();
+  const navigate = useNavigate();
+  const { user } = useUser();
+  const client = useStreamVideoClient();
+  const { toast } = useToast();
 
-  // const meetingId = user?.id;
+  const meetingId = user?.id;
 
-  // const { call } = useGetCallById(meetingId);
+  const { call } = useGetCallById(meetingId);
 
   const startRoom = async () => {
     if (!client || !user) return;
@@ -46,15 +47,15 @@ const PersonalRoom = () => {
       });
     }
 
-    router.push(`/meeting/${meetingId}?personal=true`);
+    navigate(`/meeting/${meetingId}?personal=true`);
   };
 
-  // const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meetingId}?personal=true`;
+  const meetingLink = `${import.meta.env.VITE_PUBLIC_BASE_URL}/meeting/${meetingId}?personal=true`;
 
   return (
     <section className="flex size-full flex-col gap-10 text-white">
       <h1 className="text-xl font-bold lg:text-3xl">Personal Meeting Room</h1>
-      {/* <div className="flex w-full flex-col gap-8 xl:max-w-[900px]">
+      <div className="flex w-full flex-col gap-8 xl:max-w-[900px]">
         <Table title="Topic" description={`${user?.username}'s Meeting Room`} />
         <Table title="Meeting ID" description={meetingId} />
         <Table title="Invite Link" description={meetingLink} />
@@ -74,7 +75,7 @@ const PersonalRoom = () => {
         >
           Copy Invitation
         </Button>
-      </div> */}
+      </div>
     </section>
   );
 };

@@ -1,4 +1,3 @@
-'use client';
 import { useState } from 'react';
 import {
   CallControls,
@@ -9,7 +8,7 @@ import {
   SpeakerLayout,
   useCallStateHooks,
 } from '@stream-io/video-react-sdk';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Users, LayoutList } from 'lucide-react';
 
 import {
@@ -23,9 +22,10 @@ import Loader from './Loader.jsx';
 import EndCallButton from './EndCallButton.jsx';
 
 const MeetingRoom = () => {
-  const searchParams = useSearchParams();
+  const [searchParams] = useSearchParams();
   const isPersonalRoom = !!searchParams.get('personal');
-  const router = useRouter();
+  // const isPersonalRoom = !!searchParams.get('personal');
+  const navigate = useNavigate();
   const [layout, setLayout] = useState('speaker-left');
   const [showParticipants, setShowParticipants] = useState(false);
   const { useCallCallingState } = useCallStateHooks();
@@ -53,14 +53,14 @@ const MeetingRoom = () => {
           <CallLayout />
         </div>
         <div
-          // className={`h-[calc(100vh-86px)] hidden ml-2 ${'show-block': showParticipants}`}
+          className={`h-[calc(100vh-86px)] hidden ml-2 ${showParticipants? 'show-block' : ""}`}
         >
           <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
       </div>
       {/* video layout and call controls */}
       <div className="fixed bottom-0 flex w-full items-center justify-center gap-5">
-        <CallControls onLeave={() => router.push(`/`)} />
+        <CallControls onLeave={() => navigate(`/`)} />
 
         <DropdownMenu>
           <div className="flex items-center">

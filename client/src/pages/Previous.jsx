@@ -1,4 +1,4 @@
-// import CallList from "../components/CallList";
+import CallList from "../components/CallList";
 import RootLayout from '../hoc/RootLayout';
 
 const PreviousPage = () => {
@@ -6,7 +6,7 @@ const PreviousPage = () => {
     <section className="flex size-full flex-col gap-10 text-white">
       <h1 className="text-3xl font-bold">Previous Calls</h1>
 
-      {/* <CallList type="ended" /> */}
+      <CallList type="ended" />
     </section>
   );
 };

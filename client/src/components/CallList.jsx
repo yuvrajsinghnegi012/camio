@@ -1,13 +1,13 @@
-import { Call, CallRecording } from '@stream-io/video-react-sdk';
+// import { Call, CallRecording } from '@stream-io/video-react-sdk';
 
 import Loader from './Loader';
 import { useGetCalls } from '../hooks/useGetCalls';
 import MeetingCard from './MeetingCard';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 const CallList = ({ type }) => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const { endedCalls, upcomingCalls, callRecordings, isLoading } =
     useGetCalls();
   const [recordings, setRecordings] = useState([]);
@@ -45,9 +45,9 @@ const CallList = ({ type }) => {
       );
 
       const recordings = callData
-        .filter((call) => call.recordings.length > 0)
-        .flatMap((call) => call.recordings);
-
+      .filter((call) => call.recordings.length > 0)
+      .flatMap((call) => call.recordings);
+      
       setRecordings(recordings);
     };
 
@@ -87,14 +87,16 @@ const CallList = ({ type }) => {
             link={
               type === 'recordings'
                 ? meeting.url
-                : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meeting.id}`
+                : `${import.meta.env.VITE_PUBLIC_BASE_URL}/meeting/${meeting.id}`
             }
             buttonIcon1={type === 'recordings' ? '/icons/play.svg' : undefined}
             buttonText={type === 'recordings' ? 'Play' : 'Start'}
             handleClick={
               type === 'recordings'
-                ? () => router.push(`${meeting.url}`)
-                : () => router.push(`/meeting/${meeting.id}`)
+                // ? () => router.push(`${meeting.url}`)
+                // : () => router.push(`/meeting/${meeting.id}`)
+                ? () => navigate(`${meeting.url}`)
+                : () => navigate(`/meeting/${meeting.id}`)
             }
           />
         ))
