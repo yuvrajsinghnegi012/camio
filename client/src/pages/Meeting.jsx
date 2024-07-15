@@ -2,6 +2,7 @@
 // import { useUser } from '@clerk/nextjs';
 // import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk';
 // import { useParams } from 'next/navigation';
+import { useParams } from "react-router-dom";
 // import { Loader } from 'lucide-react';
 
 // import { useGetCallById } from '../hooks/useGetCallById';
@@ -10,7 +11,7 @@
 // import MeetingRoom from '../components/MeetingRoom';
 
 const MeetingPage = () => {
-  // const { id } = useParams();
+  const { id } = useParams();
   // const { isLoaded, user } = useUser();
   // const { call, isCallLoading } = useGetCallById(id);
   // const [isSetupComplete, setIsSetupComplete] = useState(false);
@@ -31,6 +32,7 @@ const MeetingPage = () => {
   return (
     <main className="h-screen w-full">
       <h1>Meeting Room</h1>
+      <h2>{id}</h2>
       {/* <StreamCall call={call}>
         <StreamTheme>
 

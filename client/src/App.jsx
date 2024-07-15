@@ -12,6 +12,7 @@ import SignUpPage from "./pages/SignUp";
 import StreamVideoProvider from "./providers/StreamClientProvider";
 
 export default function App() {
+
   return (
     <div className="">
       <StreamVideoProvider>
@@ -22,7 +23,7 @@ export default function App() {
             <Route path={"/previous"} element={<Previous />} />
             <Route path={"/recordings"} element={<Recordings />} />
             <Route path={"/personal-room"} element={<PersonalRoom />} />
-            <Route path={"/meeting"} element={<Meeting />} />
+            <Route path={"/meeting/:id"} element={<Meeting />} />
             <Route path={"/sign-in"} element={<SignInPage />} />
             <Route path={"/sign-un"} element={<SignUpPage />} />
           </Routes>

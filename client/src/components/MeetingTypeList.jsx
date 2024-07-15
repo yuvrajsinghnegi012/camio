@@ -1,19 +1,15 @@
-/* eslint-disable camelcase */
-'use client';
-
 import { useState } from 'react';
-// /import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 import HomeCard from './HomeCard';
 import MeetingModal from './MeetingModal';
-// import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk';
-// import { useUser } from '@clerk/nextjs';
+import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk';
+import { useUser } from '@clerk/clerk-react';
 import Loader from './Loader';
 import { Textarea } from './ui/textarea';
 import ReactDatePicker from 'react-datepicker';
 import { useToast } from './ui/use-toast';
 import { Input } from './ui/input';
-import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
   dateTime: new Date(),
@@ -22,14 +18,13 @@ const initialValues = {
 };
 
 const MeetingTypeList = () => {
-  // const router = useRouter();
+  const navigate = useNavigate();
   const [meetingState, setMeetingState] = useState(undefined);
   const [values, setValues] = useState(initialValues);
   const [callDetail, setCallDetail] = useState();
-  // const client = useStreamVideoClient();
-  // const { user } = useUser();
+  const client = useStreamVideoClient();
+  const { user } = useUser();
   const { toast } = useToast();
-  const navigate = useNavigate();
 
   const createMeeting = async () => {
     if (!client || !user) return;
@@ -54,7 +49,8 @@ const MeetingTypeList = () => {
       });
       setCallDetail(call);
       if (!values.description) {
-        router.push(`/meeting/${call.id}`);
+        // router.push(`/meeting/${call.id}`);
+        navigate(`/meeting/${call.id}`);
       }
       toast({
         title: 'Meeting Created',
@@ -65,9 +61,8 @@ const MeetingTypeList = () => {
     }
   };
 
-  // if (!client || !user) return <Loader />;
-
-  // const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`;
+  if (!client || !user) return <Loader />;
+  const meetingLink = `${import.meta.env.VITE_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`;
 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -104,7 +99,7 @@ const MeetingTypeList = () => {
           isOpen={meetingState === 'isScheduleMeeting'}
           onClose={() => setMeetingState(undefined)}
           title="Create Meeting"
-          // handleClick={createMeeting}
+          handleClick={createMeeting}
         >
           <div className="flex flex-col gap-2.5">
             <label className="text-base font-normal leading-[22.4px] text-sky-2">
@@ -140,7 +135,7 @@ const MeetingTypeList = () => {
           title="Meeting Created"
           handleClick={() => {
             navigator.clipboard.writeText(meetingLink);
-            // toast({ title: 'Link Copied' });
+            toast({ title: 'Link Copied' });
           }}
           image={'/icons/checked.svg'}
           buttonIcon="/icons/copy.svg"
@@ -156,6 +151,10 @@ const MeetingTypeList = () => {
         className="text-center"
         buttonText="Join Meeting"
         // handleClick={() => router.push(values.link)}
+        handleClick={() => { 
+          const link = values.link.replace(`${import.meta.env.VITE_PUBLIC_BASE_URL}`, "");
+          navigate(link)
+          }}
       >
         <Input
           placeholder="Meeting link"
@@ -170,7 +169,7 @@ const MeetingTypeList = () => {
         title="Start an Instant Meeting"
         className="text-center"
         buttonText="Start Meeting"
-        // handleClick={createMeeting}
+        handleClick={createMeeting}
       />
     </section>
   );
