@@ -5,7 +5,7 @@ import './index.css';
 import { Toaster } from './components/ui/toaster.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import { ClerkProvider } from '@clerk/clerk-react';
-// import "@stream-io/video-react-sdk/css/styles.css";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
