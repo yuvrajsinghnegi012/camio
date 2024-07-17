@@ -17,8 +17,7 @@ const MeetingCard = ({
   return (
     <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-dark-1 px-5 py-8 xl:max-w-[568px]">
       <article className="flex flex-col gap-5">
-        <image src={icon} className="w-[28px] h-[28px]" alt="upcoming" 
-        />
+        <img src={icon} className="w-[28px] h-[28px]" alt="upcoming" />
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl font-bold">{title}</h1>

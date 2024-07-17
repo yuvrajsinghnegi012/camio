@@ -1,9 +1,10 @@
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from './ui/sheet';
 import { sidebarLinks } from '../constants/constants';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const MobileNav = () => {
-  // const pathname = usePathname();
+  const location = useLocation();
+  const pathname = location.pathname;
 
   return (
     <section className="w-full max-w-[264px]">
@@ -28,13 +29,12 @@ const MobileNav = () => {
             <SheetClose asChild>
               <section className=" flex h-full flex-col gap-6 pt-16 text-white">
                 {sidebarLinks.map((item) => {
-                  // const isActive = pathname === item.route;
-                  const isActive = false;
+                  const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`);
 
                   return (
                     <SheetClose asChild key={item.route}>
                       <Link
-                        href={item.route}
+                        to={item.route}
                         key={item.label}
                         className={`flex gap-4 items-center p-4 rounded-lg w-full max-w-60 ${isActive ? "bg-blue-1" : ""}`}
                       >

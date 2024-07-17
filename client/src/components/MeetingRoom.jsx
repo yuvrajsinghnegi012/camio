@@ -24,7 +24,6 @@ import EndCallButton from './EndCallButton.jsx';
 const MeetingRoom = () => {
   const [searchParams] = useSearchParams();
   const isPersonalRoom = !!searchParams.get('personal');
-  // const isPersonalRoom = !!searchParams.get('personal');
   const navigate = useNavigate();
   const [layout, setLayout] = useState('speaker-left');
   const [showParticipants, setShowParticipants] = useState(false);

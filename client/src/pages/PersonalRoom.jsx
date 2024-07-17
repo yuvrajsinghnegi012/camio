@@ -1,6 +1,5 @@
 import { useUser } from "@clerk/clerk-react";
 import { useStreamVideoClient } from "@stream-io/video-react-sdk";
-// import { useRouter } from "next/navigation";
 import { useNavigate } from "react-router-dom";
 import { useGetCallById } from "../hooks/useGetCallById";
 import { Button } from "../components/ui/button";
@@ -24,7 +23,6 @@ const Table = ({
 };
 
 const PersonalRoom = () => {
-  // const router = useRouter();
   const navigate = useNavigate();
   const { user } = useUser();
   const client = useStreamVideoClient();
@@ -56,7 +54,7 @@ const PersonalRoom = () => {
     <section className="flex size-full flex-col gap-10 text-white">
       <h1 className="text-xl font-bold lg:text-3xl">Personal Meeting Room</h1>
       <div className="flex w-full flex-col gap-8 xl:max-w-[900px]">
-        <Table title="Topic" description={`${user?.username}'s Meeting Room`} />
+        <Table title="Topic" description={`${user?.username || user?.firstName || "User"}'s Meeting Room`} />
         <Table title="Meeting ID" description={meetingId} />
         <Table title="Invite Link" description={meetingLink} />
       </div>

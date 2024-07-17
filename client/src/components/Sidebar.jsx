@@ -1,6 +1,3 @@
-// 'use client';
-// import Link from 'next/link';
-// import { usePathname } from 'next/navigation';
 import { Link, useLocation } from 'react-router-dom';
 import { sidebarLinks } from '../constants/constants';
 
@@ -16,7 +13,6 @@ const Sidebar = () => {
           
           return (
             <Link
-              // href={item.route}
               to={item.route}
               key={item.label}
               className={`flex gap-4 items-center p-4 rounded-lg justify-start ${ isActive ? 'bg-blue-1' : ""}`}
